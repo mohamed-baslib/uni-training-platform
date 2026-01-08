@@ -1,16 +1,121 @@
-# React + Vite
+# 🎓 منصة التدريب الجامعي | Uni Training Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+منصة ويب عربية تهدف إلى مساعدة الطلاب والخريجين على **اكتشاف فرص التدريب المناسبة لهم** بسهولة، مع تجربة استخدام واضحة وقريبة من الواقع، تم بناؤها كمشروع تطبيقي احترافي ضمن مساري في تطوير الواجهات الأمامية.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 رابط المشروع
+🔗 **Live Demo:**  
+(https://uni-training-platform.vercel.app/)
 
-## React Compiler
+🔗 **GitHub Repository:**  
+(https://github.com/mohamed-baslib/uni-training-platform)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 لقطات من المشروع
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Home Page](public/images/screenshot.png)
+
+
+---
+
+## 🧩 فكرة المشروع
+
+يعاني الكثير من الطلاب من صعوبة الوصول إلى فرص تدريب مناسبة لتخصصهم أو موقعهم.  
+جاءت هذه المنصة لتقدّم:
+
+- عرض فرص تدريب متنوعة ومنظمة
+- إمكانية حفظ والتقديم على الفرص
+- تجربة مخصصة للمستخدم المسجل
+- واجهة عربية كاملة وسهلة الاستخدام
+
+> المشروع لم يُنفذ كنموذج شكلي فقط، بل تمت محاكاة منطق منصات حقيقية قدر الإمكان.
+
+---
+
+## ✨ المميزات الرئيسية
+
+- 🔍 تصفح جميع فرص التدريب
+- ⭐ فرص مميزة (Featured Opportunities)
+- 💾 حفظ الفرص المفضلة
+- 📨 التقديم على الفرص عبر Modal
+- 👤 نظام مستخدم (تسجيل / تسجيل خروج)
+- 📄 رفع وإدارة السيرة الذاتية
+- 🧠 اقتراح فرص مناسبة حسب بيانات المستخدم
+- 🌍 دعم الموقع الجغرافي (البلد)
+- 📱 تصميم متجاوب (Responsive Design)
+- 🇸🇦 واجهة عربية بالكامل (RTL)
+
+---
+
+## 🧠 منطق ذكي داخل المشروع
+
+- إعطاء أولوية للفرص المجانية
+- عرض فرص قريبة من بلد المستخدم إن وُجد
+- نظام حفظ وتقديم منفصل
+- إدارة حالة المستخدم باستخدام Context API
+- محاكاة تخزين البيانات باستخدام LocalStorage
+
+---
+
+## 🛠️ التقنيات المستخدمة
+
+- **React.js**
+- **React Router**
+- **Context API**
+- **Tailwind CSS**
+- **LocalStorage**
+- **Font Awesome Icons**
+
+---
+
+## 📁 هيكلة المشروع (باختصار)
+
+src/
+│── components/
+│── pages/
+│── contexts/
+│── data/
+│── assets/
+│── App.jsx
+│── main.jsx
+
+yaml
+نسخ الكود
+
+---
+
+## ⚠️ ملاحظات مهمة
+
+- المشروع **Front-End فقط**
+- لا يوجد Backend حقيقي
+- البيانات محاكاة (Mock Data)
+- LocalStorage يستخدم لأغراض تعليمية فقط
+
+---
+
+## 🚀 الهدف من المشروع
+
+- بناء مشروع بورتفوليو قوي
+- تطبيق مفاهيم React عمليًا
+- محاكاة منصة حقيقية
+- تحسين التفكير المعماري في المشاريع
+- الاستعداد لسوق العمل والـ Freelancing
+
+---
+
+## 👨‍💻 المطوّر
+
+**محمد يسلم محمد باصليب**  
+Front-End Developer | React
+
+- GitHub: https://github.com/mohamed-baslib
+- LinkedIn: https://www.linkedin.com/in/mohamed-basalib/
+
+---
+
+## ⭐ إذا أعجبك المشروع
+
+لا تنسَ وضع ⭐ على المستودع  
+أي ملاحظات أو اقتراحات مرحب بها 🙌
