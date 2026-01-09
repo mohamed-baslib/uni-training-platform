@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/useAuth";
 import { opportunities } from "../data/opportunities";
 import { useState } from "react";
 import EditProfileModal from "../components/EditProfileModal";
+import { cache } from "react";
 const allOpp = opportunities;
 const personalInfoFields = [
   { label: "البريد", key: "email" },
@@ -25,21 +26,35 @@ export default function Profile() {
   const { user, updateUsers } = useAuth();
   const [isopenEditProfile, setIsOpenEditProfile] = useState(false);
   const [open, setOpen] = useState(false);
+  const [imageError, setImageError] = useState("");
   const navigate = useNavigate();
 
   // دالة رفع صورة للبروفايل
   function handleFileChange(e) {
     const file = e.target.files[0];
     if (!file) return;
+
+    // 3MB = 3 * 1024 * 1024
+    if (file.size > 3 * 1024 * 1024) {
+      setImageError("حجم الصورة كبير الحد الأقصى 3 ميغابايت");
+      return;
+    }
+
+    setImageError("");
+
     const reader = new FileReader();
     reader.onloadend = () => {
-      const base64Image = reader.result;
+      try {
+        const base64Image = reader.result;
 
-      // حفظها مع المستخدم
-      updateUsers({
-        ...user,
-        profile: { ...user.profile, avatar: base64Image },
-      });
+        // حفظها مع المستخدم
+        updateUsers({
+          ...user,
+          profile: { ...user.profile, avatar: base64Image },
+        });
+      } catch {
+        setImageError("فشل حفظ الصورة في المتصفح");
+      }
     };
 
     reader.readAsDataURL(file);
@@ -96,7 +111,7 @@ export default function Profile() {
       {/* ---------- Profile Wrapper ----------  */}
       <main className=" py-[26px] pb-[80px] px-[20px] sm:px-[80px] relative rtl bg-[#f5f7fb] text-[#1f2937] font-['Tajawal'] animate-fadeIn">
         {/* Header */}
-        <section className="flex gap-[22px] items-center mb-[18px]">
+        <section className="flex flex-col sm:flex-row gap-[22px] items-center mb-[18px]">
           <div className="relative">
             {user.profile.avatar ? (
               <img
@@ -119,10 +134,17 @@ export default function Profile() {
                 <i className="fa-solid fa-camera-rotate"></i>
               </div>
 
+              {/* Overlay */}
+              <div
+                className={`${
+                  open ? "block" : "hidden"
+                } fixed inset-0 z-[10]`}
+                onClick={() => setOpen(false)}
+              />
               {/* القائمة */}
               <div
                 className={`
-          absolute right-16 bottom-4 lg:bottom-[8px] lg:right-[112px] z-30 w-44 overflow-hidden rounded-xl bg-white shadow-xl
+          absolute right-16 bottom-4 lg:bottom-[8px] lg:right-[112px] z-[20] w-44 overflow-hidden rounded-xl bg-white shadow-xl
           transition-all duration-300 ease-out 
           ${
             open
@@ -170,18 +192,23 @@ export default function Profile() {
             </div>
             {/*  */}
           </div>
+          {imageError && (
+            <p className="absolute top-28 sm:top-[170px] md:top-[155px] sm:right-12 text-[12px] text-red-500">
+              {imageError}
+            </p>
+          )}
 
-          <div>
+          <div className="text-center sm:text-start sm:w-[65%]">
             <h2 className="text-[20px] sm:text-[24px] font-semibold">
               {user.profile.name}
             </h2>
-            <p className="text-[#6b7280] my-[6px]">
+            <p className="text-[#6b7280] my-[6px] ">
               {user.profile.spec || user.profile.university
                 ? `${user.profile.spec} • ${user.profile.university}`
                 : ""}
             </p>
 
-            <div className="flex gap-[10px] mt-[8px]">
+            <div className="flex flex-col sm:flex-row gap-[10px] mt-[8px]">
               <button
                 className="text-[12px] h-[40px] px-[14px] py-[10px] rounded-[10px] font-semibold bg-blue-600 text-white shadow-md hover:bg-blue-500"
                 onClick={() => setIsOpenEditProfile(true)}
@@ -223,8 +250,10 @@ export default function Profile() {
               </div>
             </div>
 
-            <div className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb]  transition-all duration-300
-  hover:-translate-y-1 hover:shadow-lg">
+            <div
+              className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb]  transition-all duration-300
+  hover:-translate-y-1 hover:shadow-lg"
+            >
               <h3 className="sm:text-[18px] mb-[12px] font-semibold">
                 <i className="fas fa-graduation-cap"></i> البيانات الأكاديمية
               </h3>
@@ -242,7 +271,7 @@ export default function Profile() {
                       <div className="flex flex-wrap gap-2 p-2">
                         {user.profile[item.key] == ""
                           ? ""
-                          : user.profile[item.key].split(",").map((sk, ind) => {
+                          : user.profile[item.key].split("،").map((sk, ind) => {
                               return (
                                 <span
                                   key={ind}
@@ -262,16 +291,18 @@ export default function Profile() {
 
           {/* Right */}
           <div className="flex-1 w-full">
-            <div className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb] mb-[18px]  transition-all duration-300
-  hover:-translate-y-1 hover:shadow-lg">
+            <div
+              className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb] mb-[18px]  transition-all duration-300
+  hover:-translate-y-1 hover:shadow-lg"
+            >
               <h3 className="sm:text-[18px] mb-[12px] font-semibold">
                 <i className="fas fa-file-alt"></i> السيرة الذاتية (CV)
               </h3>
 
               <p
                 className={`${
-                  user.cv.data ? "bg-blue-500 text-white" : "bg-[#f9fafb]"
-                } text-[13px] sm:text-[16px] rounded-[10px] border border-[#e5e7eb] p-3`}
+                  user.cv.data ? "bg-green-400 text-white" : "bg-[#f9fafb]"
+                } text-[10px] sm:text-[16px] rounded-[10px] border border-[#e5e7eb] p-3`}
               >
                 {user.cv.data
                   ? `${user.cv.name} — تم رفعه ${new Date(
@@ -279,6 +310,9 @@ export default function Profile() {
                     ).toLocaleString()}`
                   : "لم يتم رفع سيرة ذاتية بعد."}
               </p>
+              <span className="text-[10px] text-gray-400">
+                يجب ان يكون الحجم اقل من 3MP
+              </span>
 
               <div className="flex gap-[10px] mt-[12px]">
                 <label
@@ -310,8 +344,10 @@ export default function Profile() {
               </div>
             </div>
 
-            <div className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb] mb-[18px]  transition-all duration-300
-  hover:-translate-y-1 hover:shadow-lg">
+            <div
+              className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb] mb-[18px]  transition-all duration-300
+  hover:-translate-y-1 hover:shadow-lg"
+            >
               <h3 className="sm:text-[18px] mb-[12px] font-semibold">
                 <i className="fas fa-bookmark"></i> الفرص التي حفظتها
               </h3>
@@ -362,8 +398,10 @@ export default function Profile() {
               </ul>
             </div>
 
-            <div className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb]  transition-all duration-300
-  hover:-translate-y-1 hover:shadow-lg">
+            <div
+              className="bg-white p-[18px] rounded-[14px] shadow border border-[#e5e7eb]  transition-all duration-300
+  hover:-translate-y-1 hover:shadow-lg"
+            >
               <h3 className="sm:text-[18px] mb-[12px] font-semibold">
                 <i className="fas fa-briefcase"></i> الفرص التي تقدمت لها
               </h3>

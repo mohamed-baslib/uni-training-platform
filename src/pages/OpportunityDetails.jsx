@@ -93,8 +93,8 @@ export default function OpportunityDetails() {
               <div className="flex flex-col lg:flex-row gap-2 mb-3">
                 <button
                   className={`${
-                    user.opportunities.saved.some((s) => s == id)
-                      ? "bg-gray-800 text-white"
+                    !user.opportunities.saved.some((s) => s == id)
+                      ? "bg-gray-800 text-white border-gray-800"
                       : " bg-white text-blue-600 border-blue-600"
                   } lg:w-1/2 text-[12px] p-2 sm:p-3 rounded-xl border-2 font-bold transition-all duration-200
   hover:scale-95 active:scale-[1.03]`}
@@ -126,19 +126,26 @@ export default function OpportunityDetails() {
                     : " حفظ"}
                 </button>
                 <button
-                  className="lg:w-1/2 text-[12px] p-2 sm:p-3 rounded-xl font-bold
-  text-white bg-blue-600 border
-  border-blue-600
+                  className={`${user.opportunities.applied.some((s) => s == id)
+                    ? "text-blue-600 cursor-default"
+                    : "bg-blue-600 text-white hover:scale-95 active:scale-[1.03]"} lg:w-1/2 text-[12px] p-2 sm:p-3 rounded-xl font-bold
+    border-2 border-blue-600
   transition-all duration-200
-  hover:scale-95 active:scale-[1.03]"
-                  onClick={() =>
+  `}
+                  onClick={() =>{
                     user.id === 0
                       ? navigate("/login/login")
-                      : setIsOpenApplayModel(true)
+                      : user.opportunities.applied.some((s) => s == id) ? null : setIsOpenApplayModel(true)
+                      
+                    }
                   }
                 >
                   <i className="fas fa-paper-plane ml-2 text-[10px]" />
-                  قدّم الآن
+                 {user.opportunities.applied.some((s) => s == id)
+                    ? "تم الأرسال "
+                    : 
+                   " قدّم الآن"
+                    }
                 </button>
               </div>
             </div>

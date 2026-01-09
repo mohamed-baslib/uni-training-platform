@@ -49,7 +49,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full fixed z-[999] flex items-center px-5 pt-5">
+    <header className="w-full fixed z-[100] flex items-center px-5 pt-5">
 
       {/* الشعار */}
       <div className="w-[80px] h-[80px] lg:w-[80px] lg:h-[80px] rounded-full bg-white border-[10px] border-blue-600 absolute z-[99] overflow-hidden">
@@ -76,7 +76,7 @@ export default function Header() {
 
         {/* الروابط والأزرار */}
         <div
-          className={`h-[100vh] lg:h-0 flex flex-col lg:flex-row items-center justify-between gap-2 lg:gap-6 w-screen lg:w-full absolute top-[-20px] lg:static bg-white lg:bg-transparent p-4 lg:p-0 transition-all duration-[1000ms] lg:duration-[0ms] ${
+          className={`h-[100vh] lg:h-0 flex flex-col lg:flex-row items-center lg:justify-between gap-10 lg:gap-6 w-screen lg:w-full absolute top-[-20px] lg:static bg-white lg:bg-transparent p-4 lg:p-0 transition-all duration-[1000ms] lg:duration-[0ms] ${
             isOpen ? "flex z-[90] left-[-90px]" : " lg:flex left-[850px]"
           }`}
         >
@@ -111,6 +111,7 @@ export default function Header() {
           </nav>
 
           {/* للتحقق اذا المستخدم مسجل اخفي ازرار التسجيل واظهر معلوماته */}
+          
           {!isLoggedIn ? (
             <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 w-[200px] lg:w-[23%] mb-8 lg:mb-0 mt-2 lg:mt-0">
               <NavLink

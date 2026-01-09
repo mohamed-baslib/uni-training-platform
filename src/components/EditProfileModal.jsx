@@ -49,7 +49,6 @@ export default function EditProfileModal({ isOpen, onClose, user, onSave }) {
   /* حفظ */
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData.skills);
     const updatedUser = {
       ...user,
       auth: { ...user.auth, email: formData.email },
@@ -241,7 +240,7 @@ export default function EditProfileModal({ isOpen, onClose, user, onSave }) {
           {/* المهارات */}
           <div className="w-full">
             <label className="mb-1 block text-sm">
-              المهارات #افصلهم بـفاصلة <b>(المهارة1, المهارة2, ...)</b>
+              المهارات #افصلهم بـفاصلة <b>(المهارة1، المهارة2, ...)</b>
             </label>
             <input
               name="skills"
@@ -254,7 +253,7 @@ export default function EditProfileModal({ isOpen, onClose, user, onSave }) {
           {/* الدورات */}
           <div className="w-full">
             <label className="mb-1 block text-sm">
-              الدورات #افصلهم بـفاصلة <b>(الدورة1, الدورة2, ...)</b>
+              الدورات #افصلهم بـفاصلة <b>(الدورة1، الدورة2, ...)</b>
             </label>{" "}
             <input
               name="courses"

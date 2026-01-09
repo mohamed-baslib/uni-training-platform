@@ -14,8 +14,16 @@ export default function NoticeBubble() {
     return () => window.removeEventListener("resize", handleResize);
     }, [])
   return (
-    <div className="w-[35px] h-[65px] fixed -bottom-[-10px] right-2 z-[99] rounded-full transition-all duration-1000 hover:w-[320px]">
-        <button className={`${isBubbleOpen ? "opacity-100" : "opacity-50"} absolute z-[10] right-[3px] top-2 ml-5 rounded-full bg-white p-2 text-[11px] md:text-[14px] md:opacity-50 md:hover:opacity-100 peer`}
+    <>
+      {/* Overlay */}
+        <div
+          className={`${
+            isBubbleOpen ? "block" : "hidden"
+          } fixed inset-0 bg-black/50 z-[100]`}
+          onClick={() => setIsBubbleOpen(false)}
+          />
+    <div className="w-[35px] h-[65px] fixed -bottom-[-10px] right-2 z-[101] rounded-full transition-all duration-1000 hover:w-[320px]">
+        <button className={`${isBubbleOpen ? "opacity-100" : "opacity-50"} absolute z-[101] right-[3px] top-2 ml-5 rounded-full bg-white p-2 text-[11px] md:text-[14px] md:opacity-50 md:hover:opacity-100 peer`}
         onClick={() => window.innerWidth >= 768 ? null : setIsBubbleOpen(!isBubbleOpen)}
         >
           ⚠️
@@ -28,5 +36,6 @@ export default function NoticeBubble() {
         </bdi>
       </div>
     </div>
+          </>
   );
 }

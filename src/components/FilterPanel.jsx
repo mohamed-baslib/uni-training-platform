@@ -139,7 +139,7 @@ function FilterSelect({ label, options, value, onChange }) {
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-blue-200 text-black p-1 sm:p-2 text-[14px] rounded-lg"
+        className="w-full bg-blue-200 text-black p-2 text-[14px] rounded-lg"
       >
         {options.map((op) => (
           <option className="bg-white" key={op}>
