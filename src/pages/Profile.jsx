@@ -3,7 +3,6 @@ import { useAuth } from "../contexts/useAuth";
 import { opportunities } from "../data/opportunities";
 import { useState } from "react";
 import EditProfileModal from "../components/EditProfileModal";
-import { cache } from "react";
 const allOpp = opportunities;
 const personalInfoFields = [
   { label: "البريد", key: "email" },

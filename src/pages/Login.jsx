@@ -178,13 +178,16 @@ export default function Login() {
             </svg>
 
             <div className="absolute right-[40px] top-[30px] w-[56px] text-center px-[14px] py-[10px] rounded-xl bg-black/5 backdrop-blur-sm text-blue-600 font-bold tracking-wide animate-float">
-              JS
+              تقنية
             </div>
-            <div className="absolute right-[10px] top-[110px] w-[72px] text-center px-[14px] py-[10px] rounded-xl bg-black/5 backdrop-blur-sm text-blue-600 font-bold tracking-wide animate-float">
-              AI
+            <div className="absolute right-[10px] top-[110px] w-[150px] text-center px-[14px] py-[10px] rounded-xl bg-black/5 backdrop-blur-sm text-blue-600 font-bold tracking-wide animate-float">
+              مجالات متنوعة
             </div>
-            <div className="absolute right-[120px] top-[80px] w-[72px] text-center px-[14px] py-[10px] rounded-xl bg-black/5 backdrop-blur-sm text-blue-600 font-bold tracking-wide animate-float">
-              Cloud
+            <div className="absolute right-[120px] top-[50px] w-[72px] text-center px-[14px] py-[10px] rounded-xl bg-black/5 backdrop-blur-sm text-blue-600 font-bold tracking-wide animate-float">
+             تصميم
+            </div>
+            <div className="absolute right-[170px] top-[100px] w-[72px] text-center px-[14px] py-[10px] rounded-xl bg-black/5 backdrop-blur-sm text-blue-600 font-bold tracking-wide animate-float">
+             أدارة
             </div>
           </div>
 
